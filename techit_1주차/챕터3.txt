@@ -1,0 +1,19 @@
+HTML
+-구조 내용
+-Hyper Text Markup Language
+-인터넷 여기저기 정보의 바다를 활용가능 함 =hyper text
+-text에 의미 부여 =markup=>여는 태그와 닫는태그 필요
+
+CSS
+-모양/스타일 
+-Cascading Style Sheet
+-폭포처럼 떨어지는, 계단식의 =Cascading
+
+JS != JAVA
+-이벤트/반응
+
+개발자도구 사용시
+- html/css/js 등의 요소 내용 확인 가능->element 탭에서 사용가능 
+-에러 로그
+-네트워크 통신 정보 
+-단축키 F12
