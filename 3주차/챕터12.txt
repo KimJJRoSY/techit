@@ -1,0 +1,3 @@
+https://www.hyperui.dev/components/marketing/footers
+
+https://tailwindcss.com/
