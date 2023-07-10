@@ -1,0 +1,54 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/browse/prop-types@15.8.1/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function Btn({text, fontSize=12}){
+        return (
+            <button 
+                onClick={onClick}
+                style={{ 
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border:0,
+                    borderRedius: 10,
+                    fontSize,
+                }}>
+                {text} 
+        </button>
+        );
+    }
+    //  Btn.propType=> propTypes 벗어 나면 콘솔창에서 경고메세지 확인 가능
+    Btn.propTypes={
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number, 
+    };
+    const MemorizedBtn = React.memo(Btn)
+    function App(){
+        const [value, setValue] = React.useState("Save Change");
+        const changeValue = () => setValue("Revert Changes")
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18}/>
+                <Btn text="Continue"/>
+            </div>
+        );   
+    
+    }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+
+  <!-- 
+ <Btn text={14} fontSize={"Continue"}/>
+  -> 코드상에서는 에러 아님 틀린 코드 아님 규칙에 어긋난 문자 없음 BUT 사용하고 있는 컴포넌트 방식안에서는 에러남
+
+   -->

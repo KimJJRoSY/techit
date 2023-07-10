@@ -1,0 +1,43 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    // props는 Btn이 전달 받는 첫번째 이자 유일한 인자 + props 말고 다른 변수명 써도 ㄱㅊ
+    function Btn({props, big}){
+        console.log(props, big); 
+        return <button style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border:0,
+            borderRedius: 10,
+            fontSize: big ? 18 : 10,
+            // big 있으면 폰트사이즈 18, 없으면 10
+        }}>{props} </button>
+    }
+    function App(){
+        return (
+            // jsx의 내부
+            <div>
+                <Btn props="Save Change" big={true}/>
+                <Btn props="Continue" big={false}/>
+            </div>
+        );   
+    
+    }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+
+
+  <!-- 
+컴포넌트 : 어떤 JSX를 반환하는 함수 
+함수의 props 이용해서 텍스트 바꾸기 가능 
+    -->

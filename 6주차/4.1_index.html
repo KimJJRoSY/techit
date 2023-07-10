@@ -1,0 +1,48 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    // props의 자리는 항상 함수명(props) 여기임
+    function Btn({text, onClick}){
+        console.log(text,"was rendered"); 
+        return (
+            <button 
+                onClick={onClick}
+                style={{ 
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border:0,
+                    borderRedius: 10,
+                }}>
+                {text} 
+        </button>
+        );
+    }
+    const MemorizedBtn = React.memo(Btn)
+    function App(){
+        const [value, setValue] = React.useState("Save Change");
+        const changeValue = () => setValue("Revert Changes")
+        return (
+            <div>
+                <MemorizedBtn text={value} onClick={changeValue} />
+                <MemorizedBtn text="Continue" />
+            </div>
+        );   
+    
+    }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+    
+  <!-- 
+    <Btn style={{color:"green"}} text={value} onClick={changeValue} />
+    스타일 직접적으로 버튼에 달리지 않음 => why? 컴포넌트 사용하고 있기 때문에 props에 넣어서 적용해야됨 
+   -->
