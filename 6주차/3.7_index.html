@@ -1,0 +1,64 @@
+<!-- 단위 변환을 뒤집어보는 함수(flip function) 만들기 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App(){
+        const [amount, setAmount]= React.useState(0);
+        const [flipped, setFlipped]= React.useState(false); 
+        const onChange = (event) =>{
+            setAmount(event.target.value);
+        }; 
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            // reset함수 호출 => flip 버튼 누르면 값 0으로 초기화됨 
+            setFlipped((current) => !current);
+        };
+        // const onFlip = () => setFlipped(!flipped);
+        // !flipped == flipped이 true면 false 반환 false면 true 반환 
+        return (
+            <div>
+            <h1>Super Converter</h1>
+                <div>
+                    <label for="minutes">Minutes</label>
+                    <input 
+                        value={flipped ? amount*60 :amount} 
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number" 
+                        onChange={onChange} 
+                        disabled={flipped} />
+                </div>
+                <div>
+                    <label for="hours">Hours</label>
+                    <input 
+                        value={flipped ? amount: Math.round(amount / 60)} 
+                        // flipped 상태가 true 라면, 단위 변환 보여주지 말라== 현재 값을 보여주라고 명령함 
+                        id="hours"  
+                        placeholder="Hours" 
+                        type="number" 
+                        onChange={onChange} 
+                        disabled={!flipped} />
+                </div> 
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        ); 
+        }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+
+  <!-- 
+    disabled={flipped === false}  : flipped가 false면 disabled 됨 ==> 접근 불가 
+
+    flipped : 단순히 true 혹은 false인 변수 
+-->

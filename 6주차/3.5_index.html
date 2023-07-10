@@ -1,0 +1,36 @@
+<!--  단위 변환 앱 만들기 -->
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App(){
+        const [minutes, setMinutes]= React.useState();
+        const onChange = (event) =>{
+            setMinutes(event.target.value);
+        }
+        // useState는 array를 제공 => 첫번째 요소는 현재의 값이 됨 두번째요소는 첫번째 요소를 수정해주는 modifier함수 들어감 
+        return (
+            <div>
+            <h1>Super Converter</h1>
+            <label for="minutes">Minutes</label>
+            <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange}/>
+            <h4>You want to convert {minutes}</h4>
+            <label for="hours">Hours</label>
+            <input id="hours"  placeholder="Hours" type="number" />
+            </div>
+        );
+        }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+</html>
+
+<!-- for은 자바스크립 용어 class도 자바스크립 그래서 jsx에서는 다르게 사용 
+className == class
+htmlFor == for-->

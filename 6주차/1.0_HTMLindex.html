@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <span>Total clicks: 0</span>
+    <button id="btn">Click me</button>
+  </body>
+  <script>
+    //  counter 변수 생성
+    let counter = 0;
+    // 버튼이 많을 경우 이렇게 사용하면 제대로 작동하기 어려움
+    // const button = document.querySelector("button")
+    const button = document.getElementById("btn");
+
+    const span = document.querySelector("span");
+
+    //  한 번 클릭시 카운터 세주는 함수
+    function handleClick() {
+      counter = counter + 1;
+      span.innerText = `Total clicks: ${counter}`;
+    }
+    // 버튼 눌렸을 때 스펠링 정확하게 써야됨 => 틀려도 아무도 안 알랴줌
+    button.addEventListener("click", handleClick);
+  </script>
+</html>
+
+<!-- 바닐라js 단계
+1. html 생성
+2. javascript 가져옴 
+3. event 감지
+4. 데이터 업데이트 (ex: 함수 사용)
+5. update Html -->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App(){
+        // 2. 변수에 데이터를 담음 
+        // [숫자형 데이터, 바꿔줄 값]
+        const [counter, setCounter]= React.useState(0);
+        const onClick = () =>{
+            // 3. 해당 변수에 담긴값을 변경 
+            setCounter(counter +1)
+        };
+        return (
+            // 1.변수를 컴포넌트에 연결해
+            <div>
+            <h3>Total clicks:{counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            </div>
+        );
+        }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+</html>
+
+<!-- react.js는 데이터가 바뀔때마다 컴포넌트를 리렌더링하고 UI를 refresh 함 -->

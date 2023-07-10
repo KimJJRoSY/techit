@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function KmToMiles(){
+        return <h3>KM 2 M</h3>;
+    }
+    function MinutesToHours(){
+        const [amount, setAmount]= React.useState(0);
+        const [inverted, setInverted]= React.useState(false); 
+        const onChange = (event) =>{
+            setAmount(event.target.value);
+        }; 
+        const reset = () => setAmount(0);
+        const onInvert = () => {
+            reset();
+            setInverted((current) => !current);
+        };
+
+        return (
+            <div>
+                <div>  
+                    <label for="minutes">Minutes</label>
+                    <input 
+                        value={inverted ? amount*60 :amount} 
+                        id="minutes" 
+                        placeholder="Minutes" 
+                        type="number" 
+                        onChange={onChange} 
+                        disabled={inverted} />
+                </div>
+                <div>
+                    <label for="hours">Hours</label>
+                    <input 
+                        value={inverted ? amount: Math.round(amount / 60)} 
+                        id="hours"  
+                        placeholder="Hours" 
+                        type="number" 
+                        onChange={onChange} 
+                        disabled={!inverted} />
+                </div> 
+                <button onClick={reset}>Reset</button>
+                
+                <button onClick={onInvert}>{inverted ? "Turn back" : "Invert"}</button>
+            </div>
+        ); 
+        }
+    function App(){
+        const [index, setIndex] = React.useState("xx");
+        const onSelect = (event) => {
+            setIndex(event.target.value);
+        };
+        console.log("render w/", index);
+        return (
+            <div>
+                <h1>Super Converter</h1>
+                <select value={index} onChange={onSelect}>
+                    <option value="xx">Select your units</option>
+                    <option value="0">Minutes & Hours</option>
+                    <option value="1">Km & Miles</option>
+
+                    </select>
+                    <hr/>
+                {index === "xx" ? "Please select your units" : null}
+                {index === "0" ? <MinutesToHours /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+            </div>
+        );  
+    
+    }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+  
+//   <!-- 
+//     app 컴포넌트: root div를 그려주는 역할 == 가장 중요한 컴포넌트 
+//     select 걍 html 꺼임 
+//     {}안에 JS 쓸 수 있음 
+//     {index ==="0" ?<MinutesToHours /> : null}
+//     만약 index값이 "0"과 같다면  MinutesToHours를 렌더링 , 그게 아니면 암것도 렌더링 안함 
+
+state를 변화시킬 떄, 모든게 새로고침 됨 
+//    -->
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+          Hello I'm a title
+        </h3>
+      );
+    }
+
+    // 변수 이름이 html의 태그 이름이랑 같아야됨 !
+    // const h3 = React.creatElement(
+    //   "h3",
+    //   {
+    //     onMouseEnter: () => console.log("mouse enter"),
+    //   },
+    //   "hello I'm span"
+    // );
+
+    function Button() {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+          }}
+          onClick={() => console.log("I'm clicked")}
+        ></button>
+      );
+    }
+
+    const Container = () => (
+      <div>
+        <Title /> <Button />
+      </div>
+    );
+    ReactDom.render(<Container />, root);
+    // render 의 의미는 react element를 가지고 HTML로 만들어 배치한다는 뜻임== 즉, 사용자에게 보여준다를 의미
+  </script>
+</html>
+
+<!--  *몰라도 ㄱㅊ 완전 번거로운 방식임 
+    const span = React.creatElement("span",{속성}, "내용");
+    span의 속성: class name, id 등
+  -->
+
+<!-- babel: 코드를 변환=> jsx로 적은 코드를 브라우저가 이해할 수 있는 형태로 변환-->
+<!-- 컴포넌트의 첫 글자는 반드시 대문자여야됨 -->

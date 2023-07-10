@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App(){
+        const [counter, setCounter]= React.useState(0);
+        const onClick = () =>{
+            // setCounter(counter +1)
+            // setCounter 안에도 함수 넣을 수 있음 
+            setCounter((current)=> current + 1);
+        };
+        return (
+            <div>
+            <h3>Total clicks:{counter}</h3>
+            <button onClick={onClick}>Click me</button>
+            </div>
+        );
+        }
+    ReactDOM.render(<App/>, root);
+    </script>
+  </body>
+</html>
+
+
+<!-- 
+    앱의 state를 바꾸는 법  
+1.setCounter를 이용해서 "직접" 원하는 값을 넣어주기 ex) setCounter(987) //setCounter('hhhh')
+=>문자 , 숫자 사용가능 
+2.이전 값을 이용해서 현재 값을 계산함 
+ex)  setCounter(counter +1) // setCounter(current => current + 1);
+    둘다 현재의 state를 가지고 새로운 값을 계산함 BUT 후자의 사용이 더 안전함 WHY? react.js가 current값을 완전히 보장함 
+-->
